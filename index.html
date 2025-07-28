@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Casino Web</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Sidebar/Menu -->
+  <nav id="sidebar" class="sidebar">
+    <div class="sidebar-header">
+      <span class="sidebar-title">CASINÒ</span>
+      <button id="sidebar-toggle" class="sidebar-toggle">☰</button>
+    </div>
+    <ul class="sidebar-list">
+      <li><button id="menu-leaderboard" class="sidebar-link">Leaderboard</button></li>
+      <li><button id="menu-history" class="sidebar-link">Cronologia</button></li>
+      <li><button id="menu-bonus" class="sidebar-link">Bonus</button></li>
+      <li><button id="menu-limits" class="sidebar-link">Limiti</button></li>
+      <li><button id="menu-privacy" class="sidebar-link">Privacy</button></li>
+      <li><button id="menu-profile" class="sidebar-link">Profilo</button></li>
+      <li><button id="menu-logout" class="sidebar-link">Logout</button></li>
+      <li style="margin-top:18px;">
+        <select id="lang-select" class="sidebar-lang">
+          <option value="it">IT</option>
+          <option value="en">EN</option>
+        </select>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Topbar: avatar e saldo -->
+  <div id="topbar" class="topbar" style="display:none;">
+    <span id="topbar-saldo"></span>
+    <img id="topbar-avatar" src="" alt="avatar" class="topbar-avatar" style="display:none;">
+  </div>
+
+  <!-- Area notifiche toast -->
+  <div id="toast-area"></div>
+
+  <!-- Login/Registrazione -->
+  <div id="auth-screen" class="screen active">
+    <h1>Casinò Login / Registrazione</h1>
+    <div id="auth-tabs">
+      <button id="login-tab" class="auth-tab active">Login</button>
+      <button id="register-tab" class="auth-tab">Registrati</button>
+    </div>
+    <div id="login-form" class="auth-form">
+      <input type="text" id="login-username" placeholder="Username" autocomplete="username">
+      <input type="password" id="login-password" placeholder="Password" autocomplete="current-password">
+      <button id="login-btn">Accedi</button>
+      <div class="warning" id="login-warning"></div>
+    </div>
+    <div id="register-form" class="auth-form" style="display:none;">
+      <input type="text" id="register-username" placeholder="Username" autocomplete="username">
+      <input type="password" id="register-password" placeholder="Password" autocomplete="new-password">
+      <input type="email" id="register-email" placeholder="Email" autocomplete="email">
+      <label style="margin-top:8px;">Avatar:</label>
+      <input type="file" id="register-avatar" accept="image/*">
+      <button id="register-btn">Registrati</button>
+      <div class="warning" id="register-warning"></div>
+    </div>
+  </div>
+
+  <!-- Schermata benvenuto (dopo login) -->
+  <div id="welcome-screen" class="screen">
+    <h1>Benvenuto nel Casinò</h1>
+    <p>Seleziona un gioco:</p>
+    <div class="games-grid">
+      <button class="game-btn" data-game="blackjack">Blackjack</button>
+      <button class="game-btn" data-game="roulette">Roulette</button>
+      <button class="game-btn" data-game="poker">Poker</button>
+      <button class="game-btn" data-game="slot">Slot Machine</button>
+    </div>
+  </div>
+
+  <!-- Tavolo di gioco fullscreen -->
+  <div id="game-table" class="screen game-fullscreen">
+    <h2 id="game-title"></h2>
+    <div id="turn-indicator"></div>
+    <div id="saldo-table">
+      <span>Saldo: <span id="current-saldo">€1000</span></span>
+    </div>
+    <div id="bet-section">
+      <label for="bet-amount">Puntata (€):</label>
+      <input type="number" id="bet-amount" min="1" step="1" value="10">
+      <button id="place-bet-btn">Punta</button>
+    </div>
+    <div id="roulette-type-section" style="display:none;">
+      <label for="roulette-type">Tipo Roulette:</label>
+      <select id="roulette-type">
+        <option value="europea">Europea (1 zero)</option>
+        <option value="francese">Francese (1 zero, regole speciali)</option>
+        <option value="americana">Americana (2 zeri)</option>
+      </select>
+    </div>
+    <div id="dealer-cards" class="cards"></div>
+    <div id="player-cards" class="cards"></div>
+    <div id="roulette-board" style="display:none;"></div>
+    <div id="roulette-bet-board" style="display:none;"></div>
+    <div id="slot-machine" style="display:none;">
+      <div id="slot-reels"></div>
+      <button id="slot-spin-btn">SPIN</button>
+      <div id="slot-paytable"></div>
+      <div id="slot-message"></div>
+    </div>
+    <p id="game-message"></p>
+    <div id="blackjack-controls" style="display:none;">
+      <button id="hit-btn">Carta</button>
+      <button id="stand-btn">Stai</button>
+      <button id="restart-btn">Ricomincia</button>
+    </div>
+    <div id="poker-controls" style="display:none;"></div>
+    <button id="back-menu-btn">Torna al menu</button>
+  </div>
+
+  <!-- Modali: leaderboard, cronologia, bonus, limiti, privacy, profilo, regole, ecc. -->
+  <!-- ... (come già strutturato, vedi versioni precedenti) ... -->
+  <div id="leaderboard-modal" class="popup" style="display:none;"><div class="popup-content" style="max-width:420px;"><span class="close" id="close-leaderboard">&times;</span><h3>Leaderboard</h3><div id="leaderboard-list"></div></div></div>
+  <div id="history-modal" class="popup" style="display:none;"><div class="popup-content" style="max-width:600px;"><span class="close" id="close-history">&times;</span><h3>Cronologia dettagliata</h3><div id="history-list"></div><button id="export-history-btn">Esporta cronologia</button></div></div>
+  <div id="limits-modal" class="popup" style="display:none;"><div class="popup-content" style="max-width:400px;"><span class="close" id="close-limits">&times;</span><h3>Limiti di gioco</h3><form id="limits-form"><label>Limite deposito (€):</label><input type="number" id="limit-deposit" min="0"><label>Limite perdita (€):</label><input type="number" id="limit-loss" min="0"><label>Limite tempo (minuti):</label><input type="number" id="limit-time" min="0"><button type="submit">Salva limiti</button></form><div class="warning" id="limits-warning"></div></div></div>
+  <div id="bonus-modal" class="popup" style="display:none;"><div class="popup-content" style="max-width:400px;"><span class="close" id="close-bonus">&times;</span><h3>Bonus</h3><div id="bonus-list"></div><button id="claim-bonus-btn">Ritira bonus giornaliero</button><div class="warning" id="bonus-warning"></div></div></div>
+  <div id="privacy-modal" class="popup" style="display:none;"><div class="popup-content" style="max-width:400px;"><span class="close" id="close-privacy">&times;</span><h3>Privacy</h3><button id="delete-account-btn" style="background:#ff4e50;color:#fff;">Cancella account</button><div class="warning" id="privacy-warning"></div></div></div>
+  <div id="profile-modal" class="popup" style="display:none;"><div class="popup-content"><span class="close" id="close-profile">&times;</span><h3>Profilo utente</h3><form id="profile-form"><label>Email:</label><input type="email" id="profile-email" autocomplete="email"><label>Avatar:</label><input type="file" id="profile-avatar" accept="image/*"><button type="submit">Salva email</button></form><hr><form id="password-form"><label>Nuova password:</label><input type="password" id="profile-password" autocomplete="new-password"><button type="submit">Cambia password</button></form><div class="warning" id="profile-warning"></div></div></div>
+  <div id="rules-popup" class="popup" style="display:none;"><div class="popup-content"><span class="close" id="close-rules">&times;</span><h3>Regole del gioco</h3><div id="rules-content"></div></div></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
