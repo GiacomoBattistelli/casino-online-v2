@@ -238,20 +238,21 @@ const Blackjack = ({ saldo, updateSaldo }) => {
           100% { transform: rotateY(360deg) scale(1.1); }
         }
       `}</style>
-      <Box sx={{
-        // maxWidth: 420,
-        width: '100%',
-        px: 0,
-        py: 0,
-        borderRadius: 0,
-        boxShadow: 'none',
-        border: 'none',
-        background: 'none',
+      <Container maxWidth="sm" sx={{
+        mt: 4,
+        mb: 4,
+        px: { xs: 1, sm: 3 },
+        py: 3,
+        background: 'rgba(30,30,40,0.92)',
+        borderRadius: 5,
+        boxShadow: '0 0 32px #000a, 0 0 0 4px #388e3c44',
+        border: '2px solid #388e3c',
+        maxWidth: 600,
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
       }}>
-        <Typography variant="h4" gutterBottom sx={{ fontWeight: 900, color: '#FFD700', textShadow: '2px 2px 8px #000', letterSpacing: 1 }}>Blackjack</Typography>
+        <Typography variant="h4" gutterBottom sx={{ fontWeight: 900, color: '#FFD700', textShadow: '2px 2px 8px #000' }}>Blackjack</Typography>
         <Typography variant="h6" sx={{ mb: 1, fontWeight: 700, fontSize: 22, textShadow: '1px 1px 6px #000', color: saldo < 100 ? '#e53935' : saldo < 500 ? '#FFD600' : '#43a047' }}>
           Saldo: €{saldo}
         </Typography>
@@ -313,7 +314,7 @@ const Blackjack = ({ saldo, updateSaldo }) => {
         </Typography>
         {/* Banner pubblicitario non disturbante */}
         <GameAd position="sidebar" />
-      </Box>
+      </Container>
     </Box>
   );
 };
