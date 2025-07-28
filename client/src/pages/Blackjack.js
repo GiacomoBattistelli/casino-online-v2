@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Container, Typography, Box, Button, Stack, TextField, Select, MenuItem } from "@mui/material";
 import { Link } from "react-router-dom";
+import GameAd from "../components/GameAd";
 
 const valueOrderFrancesi = ["2","3","4","5","6","7","8","9","10","J","Q","K","A"];
 const valueOrderNapoletane = ["1","2","3","4","5","6","7","8","9","10","F","C","R"];
@@ -217,15 +218,15 @@ const Blackjack = ({ saldo, updateSaldo }) => {
       flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'center',
-      background: 'linear-gradient(135deg, #388e3c 0%, #43a047 100%)',
+      background: 'linear-gradient(135deg, #f357a8 0%, #7b2ff2 100%)',
       backgroundSize: '200% 200%',
-      animation: 'greenmove 8s ease-in-out infinite alternate',
+      animation: 'pinkmove 8s ease-in-out infinite alternate',
       position: 'relative',
       overflow: 'hidden',
     }}>
       <Confetti show={showConfetti} />
       <style>{`
-        @keyframes greenmove {
+        @keyframes pinkmove {
           0% { background-position: 0% 50%; }
           100% { background-position: 100% 50%; }
         }
@@ -237,21 +238,21 @@ const Blackjack = ({ saldo, updateSaldo }) => {
           100% { transform: rotateY(360deg) scale(1.1); }
         }
       `}</style>
-      <Box sx={{
-        // maxWidth: 420,
-        width: '100%',
-        px: 0,
-        py: 0,
-        borderRadius: 0,
-        boxShadow: 'none',
-        border: 'none',
-        background: 'none',
+      <Container maxWidth="sm" sx={{
+        mt: 4,
+        mb: 4,
+        px: { xs: 1, sm: 3 },
+        py: 3,
+        background: 'rgba(30,30,40,0.92)',
+        borderRadius: 5,
+        boxShadow: '0 0 32px #000a, 0 0 0 4px #f357a844',
+        border: '2px solid #f357a8',
+        maxWidth: 600,
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
       }}>
-        <Typography variant="h4" gutterBottom sx={{ fontWeight: 900, color: '#FFD700', textShadow: '2px 2px 8px #000', letterSpacing: 1 }}>Blackjack</Typography>
-        {/* In alto, mostra sempre il saldo demo se isDemo */}
+        <Typography variant="h4" gutterBottom sx={{ fontWeight: 900, color: '#f357a8', textShadow: '2px 2px 8px #000' }}>Blackjack</Typography>
         <Typography variant="h6" sx={{ mb: 1, fontWeight: 700, fontSize: 22, textShadow: '1px 1px 6px #000', color: saldo < 100 ? '#e53935' : saldo < 500 ? '#FFD600' : '#43a047' }}>
           Saldo: €{saldo}
         </Typography>
@@ -311,7 +312,9 @@ const Blackjack = ({ saldo, updateSaldo }) => {
           ⚡️ ATTENZIONE: Questo gioco contiene animazioni e colori lampeggianti che potrebbero causare crisi epilettiche fotosensibili.<br/>
           Se sei sensibile a luci o colori forti, gioca con cautela.
         </Typography>
-      </Box>
+        {/* Banner pubblicitario non disturbante */}
+        <GameAd position="sidebar" />
+      </Container>
     </Box>
   );
 };

@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Button, Typography, Box } from "@mui/material";
+import AdBanner from "../components/AdBanner";
 
 const Home = () => (
   <Box sx={{
@@ -38,10 +39,9 @@ const Home = () => (
     <Box sx={{ my: 4, display: 'flex', flexDirection: 'column', gap: 2, alignItems: 'center' }}>
       <Button component={Link} to="/games" variant="contained" size="large" className="home-btn" sx={{ width: 260, fontWeight: 700, fontSize: 22, borderRadius: 3, boxShadow: 3, background: '#7b2ff2', color: '#fff', '&:hover': { background: '#512da8' } }}>Inizia a Giocare</Button>
     </Box>
-    <Typography variant="body1" sx={{ position: 'absolute', bottom: 64, left: 0, right: 0, color: '#fff', fontWeight: 500, textAlign: 'center', textShadow: '1px 1px 6px #000' }}>
-      ⚠️ Il gioco è solo a scopo di divertimento. È vietato ai minori di 18 anni.<br/>
-      Nessuna vincita reale è possibile su questa piattaforma.
-    </Typography>
+    
+    {/* Banner pubblicitario non disturbante */}
+    <AdBanner position="bottom" style={{ opacity: 0.8 }} />
   </Box>
 );
 
