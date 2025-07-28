@@ -1,6 +1,7 @@
 import React from "react";
 import { Container, Typography, Box, Button } from "@mui/material";
 import { Link } from "react-router-dom";
+import AdBanner from "../components/AdBanner";
 
 const gameButtons = [
   { label: "Blackjack", to: "/games/blackjack", color: "#f357a8", key: 'blackjack' },
@@ -37,41 +38,40 @@ const Games = () => {
           filter: brightness(1.1);
         }
       `}</style>
-      <Container maxWidth="sm" sx={{ textAlign: "center", background: 'rgba(255,255,255,0.07)', borderRadius: 4, boxShadow: 6, py: 5, px: 2 }}>
-        <Typography variant="h3" gutterBottom sx={{ fontWeight: 700, color: '#fff', textShadow: '2px 2px 8px #000' }}>
+      <Container maxWidth="md" sx={{ textAlign: "center" }}>
+        <Typography variant="h3" gutterBottom sx={{ fontWeight: 700, color: '#fff', textShadow: '2px 2px 8px #000', mb: 4 }}>
           Scegli il tuo gioco
         </Typography>
-        <Box sx={{ my: 4, display: 'flex', flexDirection: 'column', gap: 3, alignItems: 'center' }}>
-          {gameButtons.map(btn => (
+        <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr' }, gap: 3, mb: 4 }}>
+          {gameButtons.map((game) => (
             <Button
-              key={btn.label}
+              key={game.key}
               component={Link}
-              to={btn.to}
+              to={game.to}
               variant="contained"
               size="large"
               className="game-btn"
               sx={{
-                width: 260,
+                height: 120,
                 fontWeight: 700,
                 fontSize: 24,
                 borderRadius: 3,
-                boxShadow: 3,
-                background: btn.color,
-                color: btn.color === '#FFD700' ? '#222' : '#fff',
-                '&:hover': {
-                  background: btn.color,
-                  filter: 'brightness(1.1)'
-                }
+                background: game.color,
+                color: '#fff',
+                '&:hover': { background: game.color, transform: 'scale(1.05)' }
               }}
             >
-              {btn.label}
+              {game.label}
             </Button>
           ))}
-          <Button component={Link} to="/" variant="outlined" size="large" sx={{ width: 260, fontWeight: 700, fontSize: 20, borderRadius: 3, color: '#fff', borderColor: '#fff', mt: 2, '&:hover': { background: '#fff2', borderColor: '#fff' } }}>
-            Torna alla Home
-          </Button>
         </Box>
+        <Button component={Link} to="/" variant="outlined" sx={{ color: '#fff', borderColor: '#fff', fontWeight: 700 }}>
+          Torna alla Home
+        </Button>
       </Container>
+      
+      {/* Banner pubblicitario non disturbante */}
+      <AdBanner position="bottom" style={{ opacity: 0.8 }} />
     </Box>
   );
 };

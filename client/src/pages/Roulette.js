@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Container, Typography, Box, Button, Stack, Chip, Select, MenuItem, Slider } from "@mui/material";
 import { Link } from "react-router-dom";
+import GameAd from "../components/GameAd";
 
 const numbers = Array.from({length: 37}, (_, i) => i);
 const colors = n => n === 0 ? 'Verde' : ([1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32,34,36].includes(n) ? 'Rosso' : 'Nero');
@@ -316,6 +317,8 @@ const Roulette = ({ saldo, updateSaldo }) => {
           ⚡️ ATTENZIONE: Questa roulette contiene animazioni e colori lampeggianti che potrebbero causare crisi epilettiche fotosensibili.<br/>
           Se sei sensibile a luci o colori forti, gioca con cautela.
         </Typography>
+        {/* Banner pubblicitario non disturbante */}
+        <GameAd position="sidebar" />
       </Container>
     </Box>
   );

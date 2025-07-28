@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Container, Typography, Box, Button, TextField, Stack, Chip, Select, MenuItem } from "@mui/material";
 import { Link } from "react-router-dom";
+import GameAd from "../components/GameAd";
 
 // Simboli con pesi diversi per slot più realistica
 const slotTypes = {
@@ -180,47 +181,45 @@ const Slot = ({ saldo, updateSaldo }) => {
       alignItems: 'center',
       justifyContent: 'center',
       background: 'linear-gradient(135deg, #7b2ff2 0%, #f357a8 100%)',
-      backgroundSize: 'cover',
-      animation: 'bgmove 10s ease-in-out infinite alternate',
+      backgroundSize: '200% 200%',
+      animation: 'purplemove 8s ease-in-out infinite alternate',
       position: 'relative',
       overflow: 'hidden',
-      transition: 'background 0.5s',
     }}>
-      <Confetti show={showConfetti} />
       <style>{`
-        @keyframes bgmove {
+        @keyframes purplemove {
           0% { background-position: 0% 50%; }
           100% { background-position: 100% 50%; }
         }
-        .reel-anim {
-          animation: reelspin 1.2s cubic-bezier(.17,.67,.83,.67);
-        }
-        @keyframes reelspin {
-          0% { transform: translateY(-180px) scale(1.2); opacity: 0.5; }
-          80% { transform: translateY(10px) scale(1.1); opacity: 1; }
-          100% { transform: translateY(0) scale(1); opacity: 1; }
-        }
         .slot-btn {
-          background: #d32f2f !important;
-          color: #fff !important;
-          font-weight: 700;
-          font-size: 22px;
-          border-radius: 3px;
-          box-shadow: 0 4px 16px #0004;
           transition: transform 0.18s cubic-bezier(.68,-0.55,.27,1.55), box-shadow 0.18s;
         }
         .slot-btn:hover {
           transform: scale(1.08) rotate(-2deg);
-          box-shadow: 0 8px 32px #d32f2f99;
+          box-shadow: 0 8px 32px #0006;
           filter: brightness(1.1);
         }
       `}</style>
-      <Container maxWidth="md" sx={{ mt: 8, textAlign: "center" }}>
-        <Typography variant="h4" gutterBottom>Slot Machine</Typography>
+      <Confetti show={showConfetti} />
+      <Container maxWidth="sm" sx={{
+        mt: 4,
+        mb: 4,
+        px: { xs: 1, sm: 3 },
+        py: 3,
+        background: 'rgba(30,30,40,0.92)',
+        borderRadius: 5,
+        boxShadow: '0 0 32px #000a, 0 0 0 4px #7b2ff244',
+        border: '2px solid #7b2ff2',
+        maxWidth: 600,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+      }}>
+        <Typography variant="h4" gutterBottom sx={{ fontWeight: 900, color: '#7b2ff2', textShadow: '2px 2px 8px #000' }}>Slot Machine</Typography>
         <Typography variant="h6" sx={{ mb: 1, fontWeight: 700, fontSize: 22, textShadow: '1px 1px 6px #000', color: saldo < 100 ? '#e53935' : saldo < 500 ? '#FFD600' : '#43a047' }}>
           Saldo: €{saldo}
         </Typography>
-        <Button component={Link} to="/games" variant="contained" color="secondary" sx={{ mb: 2, fontWeight: 700, fontSize: 18 }}>Torna al menu</Button>
+        <Button component={Link} to="/games" variant="contained" color="secondary" sx={{ mb: 2, fontWeight: 700, fontSize: 18, borderRadius: 3 }}>Torna al menu</Button>
         <Box sx={{ mb: 2 }}>
           <Select value={slotType} onChange={e => setSlotType(e.target.value)} sx={{ mr: 2, minWidth: 180 }}>
             <MenuItem value="classica">Slot Classica</MenuItem>
@@ -268,6 +267,8 @@ const Slot = ({ saldo, updateSaldo }) => {
           ⚡️ ATTENZIONE: Questa slot contiene animazioni e colori lampeggianti che potrebbero causare crisi epilettiche fotosensibili.<br/>
           Se sei sensibile a luci o colori forti, gioca con cautela.
         </Typography>
+        {/* Banner pubblicitario non disturbante */}
+        <GameAd position="sidebar" />
       </Container>
     </Box>
   );
