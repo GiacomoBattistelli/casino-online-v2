@@ -38,36 +38,40 @@ const Games = () => {
           filter: brightness(1.1);
         }
       `}</style>
-      <Container maxWidth="md" sx={{ textAlign: "center" }}>
-        <Typography variant="h3" gutterBottom sx={{ fontWeight: 700, color: '#fff', textShadow: '2px 2px 8px #000', mb: 4 }}>
+      <Container maxWidth="sm" sx={{ textAlign: "center", background: 'rgba(255,255,255,0.07)', borderRadius: 4, boxShadow: 6, py: 5, px: 2 }}>
+        <Typography variant="h3" gutterBottom sx={{ fontWeight: 700, color: '#fff', textShadow: '2px 2px 8px #000' }}>
           Scegli il tuo gioco
         </Typography>
-        <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr' }, gap: 3, mb: 4 }}>
-          {gameButtons.map((game) => (
+        <Box sx={{ my: 4, display: 'flex', flexDirection: 'column', gap: 3, alignItems: 'center' }}>
+          {gameButtons.map(btn => (
             <Button
-              key={game.key}
+              key={btn.label}
               component={Link}
-              to={game.to}
+              to={btn.to}
               variant="contained"
               size="large"
               className="game-btn"
               sx={{
-                height: 120,
+                width: 260,
                 fontWeight: 700,
                 fontSize: 24,
                 borderRadius: 3,
-                background: game.color,
-                color: '#fff',
-                '&:hover': { background: game.color, transform: 'scale(1.05)' }
+                boxShadow: 3,
+                background: btn.color,
+                color: btn.color === '#FFD700' ? '#222' : '#fff',
+                '&:hover': {
+                  background: btn.color,
+                  filter: 'brightness(1.1)'
+                }
               }}
             >
-              {game.label}
+              {btn.label}
             </Button>
           ))}
+          <Button component={Link} to="/" variant="outlined" size="large" sx={{ width: 260, fontWeight: 700, fontSize: 20, borderRadius: 3, color: '#fff', borderColor: '#fff', mt: 2, '&:hover': { background: '#fff2', borderColor: '#fff' } }}>
+            Torna alla Home
+          </Button>
         </Box>
-        <Button component={Link} to="/" variant="outlined" sx={{ color: '#fff', borderColor: '#fff', fontWeight: 700 }}>
-          Torna alla Home
-        </Button>
       </Container>
       
       {/* Banner pubblicitario non disturbante */}

@@ -138,24 +138,22 @@ const Roulette = ({ saldo, updateSaldo }) => {
       overflow: 'hidden',
     }}>
       <Confetti show={showConfetti} />
-      <Container maxWidth="sm" sx={{
-        mt: 4,
-        mb: 4,
-        px: { xs: 1, sm: 3 },
-        py: 3,
-        background: 'rgba(30,30,40,0.92)',
-        borderRadius: 5,
-        boxShadow: '0 0 32px #000a, 0 0 0 4px #FFD70044',
-        border: '2px solid #FFD700',
-        maxWidth: 600,
+      <Box sx={{
+        // maxWidth: 420,
+        width: '100%',
+        px: 0,
+        py: 0,
+        borderRadius: 0,
+        boxShadow: 'none',
+        border: 'none',
+        background: 'none',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
       }}>
-        <Typography variant="h4" gutterBottom sx={{ fontWeight: 900, color: '#FFD700', textShadow: '2px 2px 8px #000' }}>Roulette</Typography>
-        {/* In alto, mostra sempre il saldo demo se isDemo */}
+        <Typography variant="h4" gutterBottom sx={{ fontWeight: 900, color: '#FFD700', textShadow: '2px 2px 8px #000', letterSpacing: 1 }}>Roulette</Typography>
         <Typography variant="h6" sx={{ mb: 1, fontWeight: 700, fontSize: 22, textShadow: '1px 1px 6px #000', color: saldo < 100 ? '#e53935' : saldo < 500 ? '#FFD600' : '#43a047' }}>
-          Saldo: €{saldo} {isDemo && '(DEMO)'}
+          Saldo: €{saldo}
         </Typography>
         <Button component={Link} to="/games" variant="contained" color="secondary" sx={{ mb: 2, fontWeight: 700, fontSize: 18, borderRadius: 3 }}>Torna al menu</Button>
         <Box sx={{ mb: 2, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 2 }}>
@@ -319,7 +317,7 @@ const Roulette = ({ saldo, updateSaldo }) => {
         </Typography>
         {/* Banner pubblicitario non disturbante */}
         <GameAd position="sidebar" />
-      </Container>
+      </Box>
     </Box>
   );
 };

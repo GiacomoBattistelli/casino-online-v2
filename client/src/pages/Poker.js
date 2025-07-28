@@ -224,21 +224,20 @@ const Poker = ({ saldo, updateSaldo }) => {
           100% { transform: rotateY(360deg) scale(1.1); }
         }
       `}</style>
-      <Container maxWidth="sm" sx={{
-        mt: 4,
-        mb: 4,
-        px: { xs: 1, sm: 3 },
-        py: 3,
-        background: 'rgba(30,30,40,0.92)',
-        borderRadius: 5,
-        boxShadow: '0 0 32px #000a, 0 0 0 4px #43a04744',
-        border: '2px solid #43a047',
-        maxWidth: 600,
+      <Box sx={{
+        // maxWidth: 420,
+        width: '100%',
+        px: 0,
+        py: 0,
+        borderRadius: 0,
+        boxShadow: 'none',
+        border: 'none',
+        background: 'none',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
       }}>
-        <Typography variant="h4" gutterBottom sx={{ fontWeight: 900, color: '#43a047', textShadow: '2px 2px 8px #000' }}>Poker</Typography>
+        <Typography variant="h4" gutterBottom sx={{ fontWeight: 900, color: '#FFD700', textShadow: '2px 2px 8px #000', letterSpacing: 1 }}>Poker Draw 5 carte</Typography>
         <Typography variant="h6" sx={{ mb: 1, fontWeight: 700, fontSize: 22, textShadow: '1px 1px 6px #000', color: saldo < 100 ? '#e53935' : saldo < 500 ? '#FFD600' : '#43a047' }}>
           Saldo: €{saldo}
         </Typography>
@@ -305,7 +304,7 @@ const Poker = ({ saldo, updateSaldo }) => {
         </Typography>
         {/* Banner pubblicitario non disturbante */}
         <GameAd position="sidebar" />
-      </Container>
+      </Box>
     </Box>
   );
 };
