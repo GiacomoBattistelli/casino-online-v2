@@ -82,7 +82,7 @@ const GameAd = ({ position = 'bottom', onClose }) => {
           className="adsbygoogle"
           style={{ display: 'block' }}
           data-ad-client="ca-pub-5106528328416590"
-          data-ad-slot="YOUR_AD_SLOT_ID"  {/* Sostituisci con il tuo Ad Slot ID da AdSense */}
+          data-ad-slot="YOUR_AD_SLOT_ID"
           data-ad-format="auto"
           data-full-width-responsive="true"
         />
