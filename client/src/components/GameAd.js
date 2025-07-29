@@ -6,11 +6,31 @@ const GameAd = ({ position = 'bottom', onClose }) => {
   const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
-    // Carica gli annunci AdSense
-    try {
-      (window.adsbygoogle = window.adsbygoogle || []).push({});
-    } catch (error) {
-      console.log('AdSense not loaded');
+    // Inizializza AdSense per la revisione
+    const initializeAdSense = () => {
+      try {
+        if (window.adsbygoogle) {
+          (window.adsbygoogle = window.adsbygoogle || []).push({});
+          console.log('AdSense initialized successfully');
+        } else {
+          console.log('AdSense not loaded yet');
+        }
+      } catch (error) {
+        console.log('AdSense initialization error:', error);
+      }
+    };
+
+    // Aspetta che AdSense sia caricato
+    if (window.adsbygoogle) {
+      initializeAdSense();
+    } else {
+      // Se AdSense non è ancora caricato, aspetta
+      const checkAdSense = setInterval(() => {
+        if (window.adsbygoogle) {
+          initializeAdSense();
+          clearInterval(checkAdSense);
+        }
+      }, 100);
     }
   }, []);
 
@@ -78,6 +98,7 @@ const GameAd = ({ position = 'bottom', onClose }) => {
           <Close fontSize="small" />
         </IconButton>
         
+        {/* AdSense Banner - Configurato per la revisione */}
         <ins
           className="adsbygoogle"
           style={{ display: 'block' }}

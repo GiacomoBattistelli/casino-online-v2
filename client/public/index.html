@@ -12,16 +12,19 @@
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <title>Casino Games</title>
     
-    <!-- Google AdSense -->
+    <!-- Google AdSense - Codice per la revisione -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5106528328416590"
          crossorigin="anonymous"></script>
+    
+    <!-- Meta tag per AdSense -->
+    <meta name="google-adsense-account" content="ca-pub-5106528328416590">
   </head>
   <body>
     <noscript>È necessario abilitare JavaScript per eseguire questa app.</noscript>
     <div id="root"></div>
     
-    <!-- Banner pubblicitario in fondo alla pagina -->
-    <div style="position: fixed; bottom: 0; left: 0; width: 100%; background: rgba(0,0,0,0.8); z-index: 1000; padding: 10px; text-align: center;">
+    <!-- Banner pubblicitario AdSense in fondo alla pagina -->
+    <div style="position: fixed; bottom: 0; left: 0; width: 100%; background: rgba(0,0,0,0.8); z-index: 1000; padding: 10px; text-align: center; border-top: 2px solid #FFD700;">
       <ins class="adsbygoogle"
            style="display:block"
            data-ad-client="ca-pub-5106528328416590"
@@ -32,5 +35,17 @@
            (adsbygoogle = window.adsbygoogle || []).push({});
       </script>
     </div>
+    
+    <!-- Script per inizializzare AdSense -->
+    <script>
+      // Inizializza AdSense quando la pagina è caricata
+      window.addEventListener('load', function() {
+        try {
+          (adsbygoogle = window.adsbygoogle || []).push({});
+        } catch (error) {
+          console.log('AdSense initialization:', error);
+        }
+      });
+    </script>
   </body>
 </html>
