@@ -25,12 +25,13 @@ const AdBanner = ({ position = 'bottom', style = {}, onClose }) => {
       bottom: 0,
       left: 0,
       width: '100%',
-      background: 'rgba(0,0,0,0.8)',
+      background: 'rgba(0,0,0,0.5)',
       zIndex: 1000,
-      padding: '8px',
+      padding: '4px',
       textAlign: 'center',
-      maxHeight: '80px', // Limita l'altezza massima
+      maxHeight: '40px',
       overflow: 'hidden',
+      fontSize: '0.85rem',
       ...style
     },
     top: {
@@ -38,12 +39,13 @@ const AdBanner = ({ position = 'bottom', style = {}, onClose }) => {
       top: 0,
       left: 0,
       width: '100%',
-      background: 'rgba(0,0,0,0.8)',
+      background: 'rgba(0,0,0,0.5)',
       zIndex: 1000,
-      padding: '8px',
+      padding: '4px',
       textAlign: 'center',
-      maxHeight: '80px', // Limita l'altezza massima
+      maxHeight: '40px',
       overflow: 'hidden',
+      fontSize: '0.85rem',
       ...style
     },
     sidebar: {
@@ -51,13 +53,14 @@ const AdBanner = ({ position = 'bottom', style = {}, onClose }) => {
       right: 0,
       top: '50%',
       transform: 'translateY(-50%)',
-      width: '160px',
-      background: 'rgba(0,0,0,0.8)',
+      width: '80px',
+      background: 'rgba(0,0,0,0.5)',
       zIndex: 1000,
-      padding: '10px',
+      padding: '4px',
       textAlign: 'center',
-      maxHeight: '300px', // Limita l'altezza massima per sidebar
+      maxHeight: '80px',
       overflow: 'hidden',
+      fontSize: '0.75rem',
       ...style
     }
   };
@@ -66,21 +69,24 @@ const AdBanner = ({ position = 'bottom', style = {}, onClose }) => {
 
   return (
     <Box sx={bannerStyles[position]}>
-      <Box sx={{ position: 'relative' }}>
+      <Box sx={{ position: 'relative', height: '100%' }}>
         <IconButton
           onClick={handleClose}
           sx={{
             position: 'absolute',
-            top: -8,
-            right: -8,
+            top: 0,
+            right: 0,
             color: '#fff',
-            background: 'rgba(0,0,0,0.8)',
-            '&:hover': { background: 'rgba(255,0,0,0.8)' },
-            zIndex: 1001
+            background: 'rgba(0,0,0,0.7)',
+            '&:hover': { background: 'rgba(255,0,0,0.7)' },
+            zIndex: 1001,
+            p: '2px',
+            width: '24px',
+            height: '24px'
           }}
           size="small"
         >
-          <Close fontSize="small" />
+          <Close fontSize="inherit" />
         </IconButton>
         
         <ins

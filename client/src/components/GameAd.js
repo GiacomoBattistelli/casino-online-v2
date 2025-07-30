@@ -45,41 +45,44 @@ const GameAd = ({ position = 'bottom', onClose }) => {
       bottom: 0,
       left: 0,
       width: '100%',
-      background: 'rgba(0,0,0,0.9)',
+      background: 'rgba(0,0,0,0.5)',
       zIndex: 1000,
-      padding: '6px',
+      padding: '4px',
       textAlign: 'center',
       borderTop: '2px solid #FFD700',
-      maxHeight: '70px',
-      overflow: 'hidden'
+      maxHeight: '40px',
+      overflow: 'hidden',
+      fontSize: '0.85rem'
     },
     top: {
       position: 'fixed',
       top: 0,
       left: 0,
       width: '100%',
-      background: 'rgba(0,0,0,0.9)',
+      background: 'rgba(0,0,0,0.5)',
       zIndex: 1000,
-      padding: '6px',
+      padding: '4px',
       textAlign: 'center',
       borderBottom: '2px solid #FFD700',
-      maxHeight: '70px',
-      overflow: 'hidden'
+      maxHeight: '40px',
+      overflow: 'hidden',
+      fontSize: '0.85rem'
     },
     sidebar: {
       position: 'fixed',
       right: 0,
       top: '50%',
       transform: 'translateY(-50%)',
-      width: '120px',
-      background: 'rgba(0,0,0,0.9)',
+      width: '80px',
+      background: 'rgba(0,0,0,0.5)',
       zIndex: 1000,
-      padding: '8px',
+      padding: '4px',
       textAlign: 'center',
       borderLeft: '2px solid #FFD700',
       display: { xs: 'none', md: 'block' },
-      maxHeight: '250px',
-      overflow: 'hidden'
+      maxHeight: '80px',
+      overflow: 'hidden',
+      fontSize: '0.75rem'
     }
   };
 
@@ -87,21 +90,24 @@ const GameAd = ({ position = 'bottom', onClose }) => {
 
   return (
     <Box sx={adStyles[position]}>
-      <Box sx={{ position: 'relative' }}>
+      <Box sx={{ position: 'relative', height: '100%' }}>
         <IconButton
           onClick={handleClose}
           sx={{
             position: 'absolute',
-            top: -8,
-            right: -8,
+            top: 0,
+            right: 0,
             color: '#fff',
-            background: 'rgba(0,0,0,0.8)',
-            '&:hover': { background: 'rgba(255,0,0,0.8)' },
-            zIndex: 1001
+            background: 'rgba(0,0,0,0.7)',
+            '&:hover': { background: 'rgba(255,0,0,0.7)' },
+            zIndex: 1001,
+            p: '2px',
+            width: '24px',
+            height: '24px'
           }}
           size="small"
         >
-          <Close fontSize="small" />
+          <Close fontSize="inherit" />
         </IconButton>
         
         {/* AdSense Banner - Configurato per la revisione */}
