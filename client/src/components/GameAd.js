@@ -49,7 +49,6 @@ const GameAd = ({ position = 'bottom', onClose }) => {
       zIndex: 1000,
       padding: '4px',
       textAlign: 'center',
-      borderTop: '2px solid #FFD700',
       maxHeight: '40px',
       overflow: 'hidden',
       fontSize: '0.85rem'
@@ -63,7 +62,6 @@ const GameAd = ({ position = 'bottom', onClose }) => {
       zIndex: 1000,
       padding: '4px',
       textAlign: 'center',
-      borderBottom: '2px solid #FFD700',
       maxHeight: '40px',
       overflow: 'hidden',
       fontSize: '0.85rem'
