@@ -47,9 +47,11 @@ const GameAd = ({ position = 'bottom', onClose }) => {
       width: '100%',
       background: 'rgba(0,0,0,0.9)',
       zIndex: 1000,
-      padding: '8px',
+      padding: '6px',
       textAlign: 'center',
-      borderTop: '2px solid #FFD700'
+      borderTop: '2px solid #FFD700',
+      maxHeight: '70px',
+      overflow: 'hidden'
     },
     top: {
       position: 'fixed',
@@ -58,22 +60,26 @@ const GameAd = ({ position = 'bottom', onClose }) => {
       width: '100%',
       background: 'rgba(0,0,0,0.9)',
       zIndex: 1000,
-      padding: '8px',
+      padding: '6px',
       textAlign: 'center',
-      borderBottom: '2px solid #FFD700'
+      borderBottom: '2px solid #FFD700',
+      maxHeight: '70px',
+      overflow: 'hidden'
     },
     sidebar: {
       position: 'fixed',
       right: 0,
       top: '50%',
       transform: 'translateY(-50%)',
-      width: '160px',
+      width: '120px',
       background: 'rgba(0,0,0,0.9)',
       zIndex: 1000,
-      padding: '10px',
+      padding: '8px',
       textAlign: 'center',
       borderLeft: '2px solid #FFD700',
-      display: { xs: 'none', md: 'block' }
+      display: { xs: 'none', md: 'block' },
+      maxHeight: '250px',
+      overflow: 'hidden'
     }
   };
 

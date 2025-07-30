@@ -1,7 +1,10 @@
-import React, { useEffect } from 'react';
-import { Box } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import { Box, IconButton } from '@mui/material';
+import { Close } from '@mui/icons-material';
 
-const AdBanner = ({ position = 'bottom', style = {} }) => {
+const AdBanner = ({ position = 'bottom', style = {}, onClose }) => {
+  const [isVisible, setIsVisible] = useState(true);
+
   useEffect(() => {
     // Carica gli annunci AdSense
     try {
@@ -11,6 +14,11 @@ const AdBanner = ({ position = 'bottom', style = {} }) => {
     }
   }, []);
 
+  const handleClose = () => {
+    setIsVisible(false);
+    if (onClose) onClose();
+  };
+
   const bannerStyles = {
     bottom: {
       position: 'fixed',
@@ -19,8 +27,10 @@ const AdBanner = ({ position = 'bottom', style = {} }) => {
       width: '100%',
       background: 'rgba(0,0,0,0.8)',
       zIndex: 1000,
-      padding: '10px',
+      padding: '8px',
       textAlign: 'center',
+      maxHeight: '80px', // Limita l'altezza massima
+      overflow: 'hidden',
       ...style
     },
     top: {
@@ -30,8 +40,10 @@ const AdBanner = ({ position = 'bottom', style = {} }) => {
       width: '100%',
       background: 'rgba(0,0,0,0.8)',
       zIndex: 1000,
-      padding: '10px',
+      padding: '8px',
       textAlign: 'center',
+      maxHeight: '80px', // Limita l'altezza massima
+      overflow: 'hidden',
       ...style
     },
     sidebar: {
@@ -44,20 +56,42 @@ const AdBanner = ({ position = 'bottom', style = {} }) => {
       zIndex: 1000,
       padding: '10px',
       textAlign: 'center',
+      maxHeight: '300px', // Limita l'altezza massima per sidebar
+      overflow: 'hidden',
       ...style
     }
   };
 
+  if (!isVisible) return null;
+
   return (
     <Box sx={bannerStyles[position]}>
-      <ins
-        className="adsbygoogle"
-        style={{ display: 'block' }}
-        data-ad-client="ca-pub-5106528328416590"
-        data-ad-slot="YOUR_AD_SLOT_ID"
-        data-ad-format="auto"
-        data-full-width-responsive="true"
-      />
+      <Box sx={{ position: 'relative' }}>
+        <IconButton
+          onClick={handleClose}
+          sx={{
+            position: 'absolute',
+            top: -8,
+            right: -8,
+            color: '#fff',
+            background: 'rgba(0,0,0,0.8)',
+            '&:hover': { background: 'rgba(255,0,0,0.8)' },
+            zIndex: 1001
+          }}
+          size="small"
+        >
+          <Close fontSize="small" />
+        </IconButton>
+        
+        <ins
+          className="adsbygoogle"
+          style={{ display: 'block' }}
+          data-ad-client="ca-pub-5106528328416590"
+          data-ad-slot="YOUR_AD_SLOT_ID"
+          data-ad-format="auto"
+          data-full-width-responsive="true"
+        />
+      </Box>
     </Box>
   );
 };
