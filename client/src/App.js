@@ -6,6 +6,8 @@ import Blackjack from "./pages/Blackjack";
 import Roulette from "./pages/Roulette";
 import Slot from "./pages/Slot";
 import Poker from "./pages/Poker";
+
+import Boss from "./pages/Boss";
 import './App.css';
 import { Avatar, Box, Typography, Snackbar, Alert } from "@mui/material";
 
@@ -58,8 +60,10 @@ function App({ location }) {
         display: 'flex', 
         alignItems: 'center', 
         gap: 2,
-        background: 'rgba(0,0,0,0.3)',
-        borderRadius: '0 0 0 10px'
+        background: 'rgba(0,0,0,0.7)',
+        borderRadius: '0 0 0 10px',
+        backdropFilter: 'blur(10px)',
+        border: '1px solid rgba(255,255,255,0.2)'
       }}>
         <Typography sx={{ 
           fontWeight: 900, 
@@ -81,6 +85,8 @@ function App({ location }) {
         <Avatar sx={{ width: 48, height: 48, border: '2px solid #FFD700' }}>🎲</Avatar>
       </Box>
 
+
+
       {/* Routes */}
       <Routes>
         <Route path="/" element={<Home />} />
@@ -96,6 +102,10 @@ function App({ location }) {
         } />
         <Route path="/games/poker" element={
           <Poker saldo={saldo} updateSaldo={updateSaldo} />
+        } />
+
+        <Route path="/games/boss" element={
+          <Boss saldo={saldo} updateSaldo={updateSaldo} />
         } />
       </Routes>
 

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Container, Typography, Box, Button, TextField, Stack, Chip, Select, MenuItem } from "@mui/material";
+import { Container, Typography, Box, Button, TextField, Stack, Select, MenuItem } from "@mui/material";
 import { Link } from "react-router-dom";
 import GameAd from "../components/GameAd";
 
@@ -55,26 +55,9 @@ const Slot = ({ saldo, updateSaldo }) => {
   const [reelAnim, setReelAnim] = useState([false, false, false]);
   const [showConfetti, setShowConfetti] = useState(false);
   const [slotType, setSlotType] = useState('classica');
-  const [reelSymbols, setReelSymbols] = useState([
-    Array(20).fill(slotTypes.classica[0]),
-    Array(20).fill(slotTypes.classica[0]),
-    Array(20).fill(slotTypes.classica[0])
-  ]);
 
-  const sendRecordUpdate = (game, amount) => {
-    const token = localStorage.getItem('token');
-    if (!token) return;
-    fetch('/api/leaderboard/win', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
-      body: JSON.stringify({ game, amount })
-    });
-    fetch('/api/leaderboard/win', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
-      body: JSON.stringify({ game: 'overall', amount })
-    });
-  };
+
+
 
   // Rimuovo tutte le logiche demo e user, uso solo saldo e updateSaldo
   const spin = async () => {
@@ -123,7 +106,7 @@ const Slot = ({ saldo, updateSaldo }) => {
       }
       newReelSymbols[i][19] = final[i];
     }
-    setReelSymbols(newReelSymbols);
+
     setTimeout(async () => {
       const windowed = final.map((_, i) => {
         const idx = 19;
@@ -155,16 +138,11 @@ const Slot = ({ saldo, updateSaldo }) => {
         saldo: win ? saldo + payout : saldo - bet
       }, ...h].slice(0, 10));
       setSpinning(false);
+
     }, 1200);
   };
 
   React.useEffect(() => {
-    const symbols = slotTypes[slotType];
-    setReelSymbols([
-      Array(20).fill(symbols[0]),
-      Array(20).fill(symbols[0]),
-      Array(20).fill(symbols[0])
-    ]);
     setReels([Array(windowSize).fill(null), Array(windowSize).fill(null), Array(windowSize).fill(null)]);
   }, [slotType]);
 
@@ -221,6 +199,7 @@ const Slot = ({ saldo, updateSaldo }) => {
         <Typography variant="h6" sx={{ mb: 1, fontWeight: 700, fontSize: 22, textShadow: '1px 1px 6px #000', color: saldo < 100 ? '#e53935' : saldo < 500 ? '#FFD600' : '#43a047' }}>
           Saldo: €{saldo}
         </Typography>
+
         <Button component={Link} to="/games" variant="contained" color="secondary" sx={{ mb: 2, fontWeight: 700, fontSize: 18 }}>Torna al menu</Button>
         <Box sx={{ mb: 2 }}>
           <Select value={slotType} onChange={e => setSlotType(e.target.value)} sx={{ mr: 2, minWidth: 180 }}>

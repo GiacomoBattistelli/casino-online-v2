@@ -372,10 +372,7 @@ function endBlackjack(result) {
   }
   updateSaldoDisplay();
   saveProgress(); // Aggiorna progressi
-  // Passa turno se multiplayer
-  if (playerCount === 2) {
-    setTimeout(nextPlayer, 1500);
-  }
+
 }
 function restartGame() {
   if (currentGame === 'blackjack') startBlackjack();

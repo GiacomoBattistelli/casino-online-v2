@@ -126,20 +126,8 @@ const Blackjack = ({ saldo, updateSaldo }) => {
   const [deckStyle, setDeckStyle] = useState('blackjack'); // blackjack o poker
   const [busted, setBusted] = useState(false);
 
-  const sendRecordUpdate = (game, amount) => {
-    const token = localStorage.getItem('token');
-    if (!token) return;
-    fetch('/api/leaderboard/win', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
-      body: JSON.stringify({ game, amount })
-    });
-    fetch('/api/leaderboard/win', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
-      body: JSON.stringify({ game: 'overall', amount })
-    });
-  };
+
+
 
   // Rimuovo tutte le logiche demo e user, uso solo saldo e updateSaldo
   const startHand = async () => {
@@ -200,15 +188,10 @@ const Blackjack = ({ saldo, updateSaldo }) => {
     setPhase('result');
     setShowConfetti(win);
     if (win) setTimeout(() => setShowConfetti(false), 1800);
+
   };
 
-  const restart = () => {
-    setPhase('bet');
-    setMessage('');
-    setPlayerHand([]);
-    setDealerHand([]);
-    // Non uscire dal gioco, resta nella schermata
-  };
+
 
   return (
     <Box sx={{
@@ -256,6 +239,7 @@ const Blackjack = ({ saldo, updateSaldo }) => {
         <Typography variant="h6" sx={{ mb: 1, fontWeight: 700, fontSize: 22, textShadow: '1px 1px 6px #000', color: saldo < 100 ? '#e53935' : saldo < 500 ? '#FFD600' : '#43a047' }}>
           Saldo: €{saldo}
         </Typography>
+
         <Button component={Link} to="/games" variant="contained" color="secondary" sx={{ mb: 2, fontWeight: 700, fontSize: 18, borderRadius: 3 }}>Torna al menu</Button>
         <Box sx={{ mb: 2, display: 'flex', justifyContent: 'center', gap: 2 }}>
           <Select value={cardType} onChange={e => setCardType(e.target.value)} sx={{ minWidth: 120, fontWeight: 700, fontSize: 16 }}>

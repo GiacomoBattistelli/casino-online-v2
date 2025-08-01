@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Container, Typography, Box, Button, TextField, Chip, Stack, Select, MenuItem } from "@mui/material";
+import { Container, Typography, Box, Button, TextField, Stack, Select, MenuItem } from "@mui/material";
 import { Link } from "react-router-dom";
 import GameAd from "../components/GameAd";
 
@@ -132,6 +132,7 @@ const Poker = ({ saldo, updateSaldo }) => {
   const [showConfetti, setShowConfetti] = useState(false);
   const [cardType, setCardType] = useState('francesi');
 
+
   // Rimuovo tutte le logiche demo e user, uso solo saldo e updateSaldo
   const startHand = async () => {
     if (bet < 1 || bet > saldo) {
@@ -186,6 +187,7 @@ const Poker = ({ saldo, updateSaldo }) => {
     setMessage(`Hai ottenuto: ${result}${payout > 0 ? ' (+€'+payout+')' : ' (perdi la puntata)'}`);
     setShowConfetti(payout > 0);
     if (payout > 0) setTimeout(() => setShowConfetti(false), 1800);
+
   };
 
   const restart = () => {
@@ -193,6 +195,7 @@ const Poker = ({ saldo, updateSaldo }) => {
     setMessage('');
     setHand([]);
     setSelected([]);
+
     // Non uscire dal gioco, resta nella schermata
   };
 
@@ -242,6 +245,7 @@ const Poker = ({ saldo, updateSaldo }) => {
         <Typography variant="h6" sx={{ mb: 1, fontWeight: 700, fontSize: 22, textShadow: '1px 1px 6px #000', color: saldo < 100 ? '#e53935' : saldo < 500 ? '#FFD600' : '#43a047' }}>
           Saldo: €{saldo}
         </Typography>
+
         <Button component={Link} to="/games" variant="contained" color="secondary" sx={{ mb: 2, fontWeight: 700, fontSize: 18, borderRadius: 3 }}>Torna al menu</Button>
         <Box sx={{ mb: 2, display: 'flex', justifyContent: 'center', gap: 2 }}>
           <Select value={cardType} onChange={e => setCardType(e.target.value)} sx={{ minWidth: 120, fontWeight: 700, fontSize: 16 }}>

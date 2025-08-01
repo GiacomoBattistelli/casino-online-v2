@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { Container, Typography, Box, Button, Stack, Chip, Select, MenuItem, Slider } from "@mui/material";
+import { Typography, Box, Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import GameAd from "../components/GameAd";
 
 const numbers = Array.from({length: 37}, (_, i) => i);
 const colors = n => n === 0 ? 'Verde' : ([1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32,34,36].includes(n) ? 'Rosso' : 'Nero');
-const dozzina = n => n === 0 ? '-' : n <= 12 ? '1-12' : n <= 24 ? '13-24' : '25-36';
+
 const payoutTable = { numero: 35, colore: 2, paridispari: 2, dozzina: 3 };
 
 const Confetti = ({ show }) => show ? (
@@ -20,38 +20,22 @@ const Confetti = ({ show }) => show ? (
 
 const Roulette = ({ saldo, updateSaldo }) => {
   const [bet, setBet] = useState(10);
-  const [betNumber, setBetNumber] = useState(0);
+
   const [message, setMessage] = useState('');
-  const [lastResult, setLastResult] = useState(null);
+
   const [history, setHistory] = useState([]);
   const [spinning, setSpinning] = useState(false);
   const [showConfetti, setShowConfetti] = useState(false);
   const [ballAngle, setBallAngle] = useState(0);
   const [highlight, setHighlight] = useState(null);
-  const [flashNumbers, setFlashNumbers] = useState(false);
+
+
   const [selectedNumbers, setSelectedNumbers] = useState([]);
   const [selectedColor, setSelectedColor] = useState('');
   const [selectedParity, setSelectedParity] = useState('');
 
-  const sendRecordUpdate = (game, amount) => {
-    const token = localStorage.getItem('token');
-    if (!token) return;
-    fetch('/api/leaderboard/win', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
-      body: JSON.stringify({ game, amount })
-    });
-    fetch('/api/leaderboard/win', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
-      body: JSON.stringify({ game: 'overall', amount })
-    });
-  };
 
-  // Rimuovo tutte le logiche demo e user, uso solo saldo e updateSaldo
-  const isDemo = false; // Always false as per new_code
-  const maxDemoBets = 7; // Keep this for now, though not used in new_code
-  const isDemoLimit = false; // Always false as per new_code
+
 
   const toggleNumber = n => {
     setSelectedNumbers(nums => nums.includes(n) ? nums.filter(x => x !== n) : [...nums, n]);
@@ -77,14 +61,14 @@ const Roulette = ({ saldo, updateSaldo }) => {
     setSpinning(true);
     setBallAngle(0);
     setHighlight(null);
-    setFlashNumbers(true);
-    setTimeout(() => setFlashNumbers(false), 3200);
+
     setTimeout(async () => {
       // LOGICA VINCITA FACILITATA
       // outcome < 0.015 tripla, < 0.03 doppia
-      let outcome = Math.random();
-      let triple = outcome < 0.015;
-      let double = !triple && outcome < 0.03;
+
+
+
+
       let result = Math.floor(Math.random() * 37);
       let win = false;
       let payout = 0;
@@ -105,7 +89,7 @@ const Roulette = ({ saldo, updateSaldo }) => {
       }
       if (win) updateSaldo(payout);
       else updateSaldo(-bet);
-      setLastResult(result);
+
       setMessage(win ? `Numero uscito: ${result}. Hai vinto €${Math.round(payout)}!` : `Numero uscito: ${result}. Hai perso!`);
       setHistory(h => [{ result, selectedNumbers, selectedColor, selectedParity, win, payout: win ? '+'+Math.round(payout) : '-'+bet, saldo: (win ? saldo + Math.round(payout) : saldo - bet) }, ...h].slice(0,10));
       setSpinning(false);
@@ -115,6 +99,7 @@ const Roulette = ({ saldo, updateSaldo }) => {
       setSelectedColor('');
       setSelectedParity('');
       if (win) setTimeout(() => setShowConfetti(false), 1800);
+
     }, 3200);
     // Animazione pallina
     let angle = 0;
@@ -155,6 +140,7 @@ const Roulette = ({ saldo, updateSaldo }) => {
         <Typography variant="h6" sx={{ mb: 1, fontWeight: 700, fontSize: 22, textShadow: '1px 1px 6px #000', color: saldo < 100 ? '#e53935' : saldo < 500 ? '#FFD600' : '#43a047' }}>
           Saldo: €{saldo}
         </Typography>
+
         <Button component={Link} to="/games" variant="contained" color="secondary" sx={{ mb: 2, fontWeight: 700, fontSize: 18, borderRadius: 3 }}>Torna al menu</Button>
         <Box sx={{ mb: 2, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 2 }}>
           <Typography variant="body1" sx={{ color: '#fff', fontWeight: 700, fontSize: 18 }}>Puntata:</Typography>
@@ -162,7 +148,7 @@ const Roulette = ({ saldo, updateSaldo }) => {
           <Typography variant="h6" sx={{ mx: 1, color: '#FFD700', minWidth: 40, fontWeight: 900 }}>{bet}</Typography>
           <Button variant="contained" color="error" onClick={() => setBet(b => b+1)} disabled={spinning} sx={{ minWidth: 36, minHeight: 36, fontWeight: 900, fontSize: 20, borderRadius: 2 }}>+</Button>
         </Box>
-        <Button variant="contained" color="success" onClick={() => placeBet()} disabled={spinning || isDemoLimit} sx={{ fontWeight: 900, fontSize: 22, px: 4, py: 1.5, mb: 2, mt: 1, borderRadius: 3, boxShadow: '0 0 16px #FFD70088' }}>Gira la ruota</Button>
+        <Button variant="contained" color="success" onClick={() => placeBet()} disabled={spinning} sx={{ fontWeight: 900, fontSize: 22, px: 4, py: 1.5, mb: 2, mt: 1, borderRadius: 3, boxShadow: '0 0 16px #FFD70088' }}>Gira la ruota</Button>
         <Box sx={{ mb: 3, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <Typography variant="body1" sx={{ color: '#fff', fontWeight: 700, fontSize: 20, mb: 1 }}>Scegli la/e puntata/e:</Typography>
           <Box sx={{ display: 'flex', gap: 3, mb: 3, flexWrap: 'wrap', justifyContent: 'center' }}>

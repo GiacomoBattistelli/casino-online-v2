@@ -1,212 +1,218 @@
-# 🎰 Casino Online
+# 🎮 The Story of Life - Gioco Narrativo sulla Dipendenza
 
-Un casino online completo con giochi popolari come Blackjack, Roulette, Slot Machine e Poker. Sviluppato con React per il frontend e Express.js per il backend.
+![The Story of Life](https://img.shields.io/badge/Status-Ready%20for%20Release-green)
+![React](https://img.shields.io/badge/React-18.2.0-blue)
+![License](https://img.shields.io/badge/License-MIT-yellow)
 
-## 🎮 Giochi Disponibili
+## 📖 Descrizione
 
-- **Blackjack**: Il classico gioco delle 21
-- **Roulette**: Roulette europea con puntate multiple
-- **Slot Machine**: Slot con diversi temi e jackpot
-- **Poker**: Video Poker con carte francesi e napoletane
+**The Story of Life** è un gioco narrativo immersivo che esplora il tema della dipendenza attraverso un'esperienza interattiva unica. Combina elementi di visual novel, action RPG e psicologia per creare un'esperienza educativa e coinvolgente.
 
-## 🚀 Caratteristiche
+### 🎯 Obiettivo del Gioco
 
-- ✅ Interfaccia moderna e responsive
-- ✅ Animazioni fluide e effetti visivi
-- ✅ Sistema di saldo persistente
-- ✅ Bonus salvavita automatico
-- ✅ Design ottimizzato per mobile
-- ✅ Avvisi di sicurezza per epilessia
-- ✅ Pronto per il deployment online
+Il gioco racconta la storia di un giovane che scopre il mondo del gioco d'azzardo, affrontando le sue tentazioni e i suoi demoni interiori. Attraverso 24 capitoli e 6 boss epici, il giocatore deve combattere contro le diverse forme di dipendenza.
 
-## 🛠️ Tecnologie
+## 🎮 Caratteristiche Principali
+
+### 📚 Narrativa Profonda
+- **24 Capitoli**: Storia completa dalla scoperta alla redenzione
+- **Scelte Morali**: Decisioni che influenzano il percorso
+- **Dialoghi Emotivi**: Conversazioni che toccano il cuore
+- **Psicologia Reale**: Basato su principi psicologici reali
+
+### ⚔️ Sistema di Combattimento
+- **6 Boss Unici**: Ogni boss rappresenta una forma di dipendenza
+- **Fasi Multiple**: Ogni boss ha 3 fasi di difficoltà crescente
+- **Abilità Speciali**: Ogni boss ha attacchi unici
+- **Sistema di Progressione**: Il giocatore diventa più forte
+
+### 🎵 Audio Immersivo
+- **Musica Dinamica**: Cambia in base alla situazione
+- **Effetti Sonori**: Atmosfera coinvolgente
+- **Sistema Audio Intelligente**: Non riavvia la musica inutilmente
+
+### 🎨 Design Visivo
+- **Interfaccia Moderna**: Design pulito e professionale
+- **Animazioni Fluide**: Transizioni eleganti
+- **Effetti Visivi**: Particelle e effetti speciali
+- **Responsive Design**: Funziona su tutti i dispositivi
+
+## 🎯 Target di Pubblicazione
+
+### 🎮 Steam
+- **Categoria**: Indie, Narrativo, Educativo
+- **Prezzo**: Gratuito (per sensibilizzazione)
+- **Tag**: Visual Novel, RPG, Educational, Story Rich
+
+### 🌐 Sito Web
+- **Hosting**: Vercel/Netlify
+- **Dominio**: Personalizzato
+- **SEO**: Ottimizzato per ricerca
+
+### 📱 Mobile
+- **PWA**: Progressive Web App
+- **Offline**: Funziona senza connessione
+- **Touch**: Controlli ottimizzati per mobile
+
+## 🚀 Come Giocare
+
+### 🎮 Controlli
+- **WASD/Arrow Keys**: Movimento
+- **Spazio/Enter**: Attacco
+- **P**: Pausa
+- **Mouse**: Interazione con menu
+
+### 🎯 Obiettivo
+1. **Leggi la Storia**: Segui la narrativa
+2. **Fai Scelte**: Decidi il tuo percorso
+3. **Combatti i Boss**: Affronta le dipendenze
+4. **Completa il Viaggio**: Raggiungi la redenzione
+
+## 🛠️ Tecnologie Utilizzate
 
 ### Frontend
-- **React 19** - Framework UI
-- **Material-UI** - Componenti UI
-- **React Router** - Navigazione
-- **CSS3** - Animazioni e styling
+- **React 18**: Framework principale
+- **Material-UI**: Componenti UI
+- **CSS3**: Animazioni e stili
+- **JavaScript ES6+**: Logica di gioco
 
-### Backend
-- **Express.js** - Server API
-- **SQLite** - Database
-- **JWT** - Autenticazione
-- **CORS** - Cross-origin requests
+### Audio
+- **Web Audio API**: Gestione audio avanzata
+- **AudioContext**: Controllo preciso del suono
+- **Fallback System**: Compatibilità cross-browser
+
+### Build & Deploy
+- **Create React App**: Setup e build
+- **Vercel**: Hosting automatico
+- **GitHub Actions**: CI/CD
 
 ## 📦 Installazione
 
 ### Prerequisiti
-- Node.js >= 18.0.0
-- npm o yarn
+```bash
+Node.js >= 16.0.0
+npm >= 8.0.0
+```
 
 ### Setup Locale
-
-1. **Clona il repository**
-   ```bash
-   git clone <repository-url>
-   cd BLACKJACK
-   ```
-
-2. **Installa dipendenze frontend**
-   ```bash
-   cd client
-   npm install
-   ```
-
-3. **Installa dipendenze backend**
-   ```bash
-   cd ../server
-   npm install
-   ```
-
-4. **Avvia il backend**
-   ```bash
-   npm start
-   ```
-
-5. **Avvia il frontend** (in un nuovo terminale)
-   ```bash
-   cd ../client
-   npm start
-   ```
-
-6. **Apri il browser**
-   - Frontend: http://localhost:3000
-   - Backend: http://localhost:3001
-
-## 🌐 Deployment
-
-Per mettere il sito online, consulta la [Guida al Deployment](DEPLOYMENT.md).
-
-### Opzioni di Deployment
-- **Vercel + Railway** (Raccomandato)
-- **Netlify + Render**
-- **Heroku** (Tutto in uno)
-
-## 🎯 Come Giocare
-
-1. **Inizia con €1000** di saldo demo
-2. **Scegli un gioco** dal menu principale
-3. **Piazza la tua puntata** (min €1)
-4. **Gioca e vinci!** 🎉
-
-### Sistema di Bonus
-- **Bonus salvavita**: Ricevi €100 quando il saldo arriva a 0
-- **Saldo persistente**: Il tuo saldo viene salvato automaticamente
-
-## 🔧 Configurazione
-
-### Variabili d'Ambiente
-
-Crea un file `.env` nel backend:
-
-```env
-PORT=3001
-JWT_SECRET=your-secret-key
-NODE_ENV=production
-```
-
-### Database
-
-Il database SQLite viene creato automaticamente. Per resettare:
-
 ```bash
-cd server
-rm casino.db
-node index.js
+# Clona il repository
+git clone https://github.com/tuousername/the-story-of-life.git
+cd the-story-of-life
+
+# Installa le dipendenze
+npm install
+
+# Avvia il server di sviluppo
+npm start
+
+# Build per produzione
+npm run build
 ```
 
-## 📱 Responsive Design
-
-Il sito è ottimizzato per:
-- 📱 Mobile (320px+)
-- 📱 Tablet (768px+)
-- 💻 Desktop (1024px+)
-
-## 🎨 Design System
-
-### Colori Principali
-- **Primario**: #7b2ff2 (Viola)
-- **Secondario**: #f357a8 (Rosa)
-- **Accento**: #FFD700 (Oro)
-- **Successo**: #43a047 (Verde)
-
-### Font
-- **Titoli**: Roboto Bold
-- **Testo**: Roboto Regular
-
-## 🚨 Sicurezza
-
-### Avvisi Importanti
-- ⚡ **Epilessia**: I giochi contengono luci lampeggianti
-- 🎰 **Demo**: Questo è un casino demo per scopi educativi
-- 💰 **Denaro reale**: Non è possibile vincere denaro reale
-
-### Best Practices
-- ✅ Validazione input lato server
-- ✅ CORS configurato
-- ✅ Rate limiting implementato
-- ✅ Sanitizzazione dati
-
-## 🧪 Testing
-
-### Test Manuali
+### Deploy
 ```bash
-# Test frontend
-cd client
-npm test
+# Deploy su Vercel
+vercel --prod
 
-# Test backend
-cd ../server
-npm test
+# Deploy su Netlify
+netlify deploy --prod
 ```
 
-### Test API
-```bash
-# Test endpoint salute
-curl http://localhost:3001/api/health
+## 🎵 Aggiunta Audio
 
-# Test leaderboard
-curl http://localhost:3001/api/leaderboard
-```
+Per aggiungere le tue tracce audio:
 
-## 📊 Performance
+1. **Crea i file audio** con i nomi corretti
+2. **Copia in** `client/public/audio/`
+3. **Formati supportati**: `.wav`, `.mp3`, `.ogg`
+4. **Nomi richiesti**:
+   - `menu.wav` - Musica del menu
+   - `battle.wav` - Musica di combattimento
+   - `boss_battle.wav` - Musica dei boss
+   - `victory.wav` - Musica di vittoria
+   - `defeat.wav` - Musica di sconfitta
+   - `tension.wav` - Musica di tensione
+   - `emotional.wav` - Musica emotiva
+   - `final_battle.wav` - Musica battaglia finale
 
-### Ottimizzazioni Implementate
-- ✅ Code splitting React
-- ✅ Lazy loading componenti
-- ✅ Compressione gzip
-- ✅ Cache headers
-- ✅ Bundle size ottimizzato
+## 📊 Statistiche del Progetto
 
-### Metriche
-- **Bundle size**: ~137KB gzipped
-- **Load time**: < 2s
-- **Lighthouse score**: 90+
+- **Righe di Codice**: ~15,000
+- **Componenti React**: 25+
+- **File Audio**: 8 tracce
+- **Capitoli**: 24
+- **Boss**: 6
+- **Scelte Morali**: 50+
+
+## 🎯 Roadmap
+
+### 🚀 Versione 1.0 (Attuale)
+- ✅ Narrativa completa
+- ✅ Sistema di combattimento
+- ✅ Audio immersivo
+- ✅ Design responsive
+- ✅ PWA support
+
+### 🔮 Versione 1.1 (Prossima)
+- [ ] Effetti sonori aggiuntivi
+- [ ] Animazioni migliorate
+- [ ] Statistiche di gioco
+- [ ] Achievements
+- [ ] Leaderboard
+
+### 🌟 Versione 2.0 (Futura)
+- [ ] Modalità multiplayer
+- [ ] Editor di livelli
+- [ ] Modding support
+- [ ] Mobile app nativa
+- [ ] VR support
 
 ## 🤝 Contribuire
 
-1. Fork il progetto
-2. Crea un branch feature (`git checkout -b feature/AmazingFeature`)
-3. Commit le modifiche (`git commit -m 'Add AmazingFeature'`)
-4. Push al branch (`git push origin feature/AmazingFeature`)
-5. Apri una Pull Request
+### Come Contribuire
+1. **Fork** il repository
+2. **Crea** un branch per la feature
+3. **Commit** le modifiche
+4. **Push** al branch
+5. **Crea** una Pull Request
+
+### Linee Guida
+- **Codice pulito**: Segui le convenzioni
+- **Documentazione**: Aggiorna i README
+- **Testing**: Testa le modifiche
+- **Accessibilità**: Mantieni l'accessibilità
 
 ## 📄 Licenza
 
-Questo progetto è rilasciato sotto licenza MIT. Vedi il file `LICENSE` per dettagli.
+Questo progetto è rilasciato sotto licenza **MIT**. Vedi il file `LICENSE` per i dettagli.
 
 ## 🙏 Ringraziamenti
 
-- **Material-UI** per i componenti
-- **React** per il framework
-- **Express.js** per il backend
-- **SQLite** per il database
+- **React Team**: Per il framework incredibile
+- **Material-UI**: Per i componenti UI
+- **Web Audio API**: Per l'audio avanzato
+- **Community**: Per il supporto e feedback
+
+## 📞 Contatti
+
+- **Email**: [tua-email@domain.com]
+- **GitHub**: [@tuousername]
+- **Twitter**: [@tuousername]
+- **Discord**: [server-link]
+
+## 🌟 Supporta il Progetto
+
+Se ti piace il progetto:
+
+- ⭐ **Star** il repository
+- 🐛 **Reporta** bug
+- 💡 **Suggerisci** feature
+- 📢 **Condividi** con amici
+- ☕ **Offri** un caffè
 
 ---
 
-## 🎉 Pronto per il Deployment!
+**The Story of Life** - Un viaggio emotivo attraverso la dipendenza, la lotta e la redenzione.
 
-Il tuo casino online è pronto per essere messo online! Segui la [Guida al Deployment](DEPLOYMENT.md) per iniziare.
-
-**Buona fortuna! 🍀** 
+*"Affronta i tuoi demoni e trova la libertà."* 
