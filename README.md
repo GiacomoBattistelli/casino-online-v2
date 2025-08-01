@@ -215,4 +215,4 @@ Se ti piace il progetto:
 
 **The Story of Life** - Un viaggio emotivo attraverso la dipendenza, la lotta e la redenzione.
 
-*"Affronta i tuoi demoni e trova la libertà."* 
+*"Affronta i tuoi demoni e trova la libertà."* # Test deploy
