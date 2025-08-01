@@ -26,11 +26,6 @@
     "REACT_APP_VERSION": "1.0.0",
     "REACT_APP_NAME": "The Story of Life"
   },
-  "functions": {
-    "client/build/static/**/*.js": {
-      "maxDuration": 10
-    }
-  },
   "headers": [
     {
       "source": "/static/(.*)",
