@@ -114,6 +114,40 @@ const Boss = ({ saldo, updateSaldo }) => {
     };
   }, [musicManager]);
 
+  // Gestione musica di sottofondo basata sullo stato del gioco
+  useEffect(() => {
+    if (!musicManager.isAudioWorking()) return;
+
+    switch (gameState) {
+      case GAME_STATES.MENU:
+        musicManager.playBackground('ambient');
+        break;
+      case GAME_STATES.DIALOG:
+        // Musica basata sul capitolo corrente
+        if (currentChapter) {
+          const chapterNumber = currentChapter.level;
+          if (chapterNumber <= 5) {
+            musicManager.playBackground('exploration');
+          } else if (chapterNumber <= 10) {
+            musicManager.playBackground('mystery');
+          } else if (chapterNumber <= 15) {
+            musicManager.playBackground('hope');
+          } else if (chapterNumber <= 20) {
+            musicManager.playBackground('despair');
+          } else {
+            musicManager.playBackground('ambient');
+          }
+        }
+        break;
+      case GAME_STATES.BOSS_BATTLE:
+        // Durante la battaglia, ferma la musica di sottofondo
+        musicManager.stopBackground();
+        break;
+      default:
+        musicManager.playBackground('ambient');
+    }
+  }, [gameState, currentChapter, musicManager]);
+
   // Calculate player damage based on power level
   const getPlayerDamage = () => {
     return 15 + (playerStats.power - 1) * 5; // Base 15 + 5 per level
