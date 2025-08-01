@@ -29,7 +29,61 @@ class MusicManager {
     this.backgroundMusic = null;
     this.isBackgroundPlaying = false;
     this.fadeInterval = null;
+    this.syntheticAudio = null;
     this.initializeAudio();
+  }
+
+  // Genera audio sintetico per test
+  generateSyntheticAudio(frequency = 440, duration = 3000, type = 'sine') {
+    try {
+      if (!this.audioContext) {
+        this.audioContext = new (AudioContext || webkitAudioContext)();
+      }
+      
+      const oscillator = this.audioContext.createOscillator();
+      const gainNode = this.audioContext.createGain();
+      
+      oscillator.connect(gainNode);
+      gainNode.connect(this.audioContext.destination);
+      
+      oscillator.frequency.setValueAtTime(frequency, this.audioContext.currentTime);
+      oscillator.type = type;
+      
+      gainNode.gain.setValueAtTime(0, this.audioContext.currentTime);
+      gainNode.gain.linearRampToValueAtTime(this.volume / 100, this.audioContext.currentTime + 0.1);
+      gainNode.gain.linearRampToValueAtTime(0, this.audioContext.currentTime + duration / 1000);
+      
+      oscillator.start(this.audioContext.currentTime);
+      oscillator.stop(this.audioContext.currentTime + duration / 1000);
+      
+      return oscillator;
+    } catch (error) {
+      console.log('Synthetic audio generation failed:', error);
+      return null;
+    }
+  }
+
+  // Genera musica sintetica per diversi tipi
+  generateSyntheticMusic(track) {
+    const musicTypes = {
+      menu: { freq: 220, duration: 2000, type: 'sine' },
+      ambient: { freq: 330, duration: 3000, type: 'sine' },
+      exploration: { freq: 440, duration: 2500, type: 'triangle' },
+      mystery: { freq: 550, duration: 2800, type: 'sawtooth' },
+      hope: { freq: 660, duration: 3200, type: 'sine' },
+      despair: { freq: 110, duration: 4000, type: 'square' },
+      battle: { freq: 880, duration: 1500, type: 'sawtooth' },
+      boss_battle: { freq: 1100, duration: 1200, type: 'square' },
+      victory: { freq: 1320, duration: 2000, type: 'sine' },
+      defeat: { freq: 110, duration: 3000, type: 'sawtooth' },
+      tension: { freq: 440, duration: 1800, type: 'triangle' },
+      emotional: { freq: 330, duration: 3500, type: 'sine' },
+      intro: { freq: 220, duration: 4000, type: 'sine' },
+      final_battle: { freq: 1320, duration: 1000, type: 'square' }
+    };
+    
+    const config = musicTypes[track] || musicTypes.ambient;
+    return this.generateSyntheticAudio(config.freq, config.duration, config.type);
   }
 
   async initializeAudio() {
@@ -50,7 +104,7 @@ class MusicManager {
         
         // Add event listeners for better error handling
         audio.addEventListener('error', (e) => {
-          console.log(`Audio file not found for ${track}: ${url}`);
+          console.log(`Audio file not found for ${track}: ${url} - Will use synthetic audio`);
         });
         
         audio.addEventListener('canplaythrough', () => {
@@ -139,12 +193,38 @@ class MusicManager {
             })
             .catch(error => {
               console.log(`Background audio play failed for ${track}:`, error);
+              // Fallback to synthetic audio
+              this.playSyntheticBackground(track);
             });
         }
       }
       
     } catch (error) {
       console.log('Background audio error:', error);
+      // Fallback to synthetic audio
+      this.playSyntheticBackground(track);
+    }
+  }
+
+  // Fallback per musica di sottofondo sintetica
+  playSyntheticBackground(track) {
+    console.log(`Playing synthetic background music: ${track}`);
+    
+    // Ferma la musica sintetica precedente
+    if (this.syntheticAudio) {
+      this.syntheticAudio.stop();
+    }
+    
+    // Genera nuova musica sintetica
+    this.syntheticAudio = this.generateSyntheticMusic(track);
+    
+    // Loop della musica sintetica
+    if (this.syntheticAudio) {
+      setInterval(() => {
+        if (this.isBackgroundPlaying) {
+          this.generateSyntheticMusic(track);
+        }
+      }, 3000); // Ripeti ogni 3 secondi
     }
   }
 
@@ -191,6 +271,10 @@ class MusicManager {
       this.backgroundMusic.pause();
       this.backgroundMusic.currentTime = 0;
       this.isBackgroundPlaying = false;
+    }
+    if (this.syntheticAudio) {
+      this.syntheticAudio.stop();
+      this.syntheticAudio = null;
     }
     if (this.fadeInterval) {
       clearInterval(this.fadeInterval);
@@ -249,6 +333,8 @@ class MusicManager {
             })
             .catch(error => {
               console.log(`Audio play failed for ${track}:`, error);
+              // Fallback to synthetic audio
+              this.playSyntheticMusic(track);
             });
         }
       } else {
@@ -259,7 +345,15 @@ class MusicManager {
       
     } catch (error) {
       console.log('Audio error:', error);
+      // Fallback to synthetic audio
+      this.playSyntheticMusic(track);
     }
+  }
+
+  // Fallback per musica sintetica
+  playSyntheticMusic(track) {
+    console.log(`Playing synthetic music: ${track}`);
+    this.syntheticAudio = this.generateSyntheticMusic(track);
   }
 
   stop() {
@@ -269,6 +363,10 @@ class MusicManager {
         this.currentMusic.currentTime = 0;
         this.currentMusic = null;
         this.currentTrack = null;
+      }
+      if (this.syntheticAudio) {
+        this.syntheticAudio.stop();
+        this.syntheticAudio = null;
       }
     } catch (error) {
       console.log('Stop error:', error);
@@ -282,6 +380,9 @@ class MusicManager {
       }
       if (this.backgroundMusic) {
         this.backgroundMusic.pause();
+      }
+      if (this.syntheticAudio) {
+        this.syntheticAudio.stop();
       }
     } catch (error) {
       console.log('Pause error:', error);
